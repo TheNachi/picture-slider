@@ -1,6 +1,6 @@
 import * as React from "react";
 import {
-  SafeAreaView, StyleSheet, View, Dimensions,
+  SafeAreaView, StyleSheet, View, Dimensions, Text
 } from "react-native";
 import { Feather as Icon } from "@expo/vector-icons";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
@@ -174,8 +174,8 @@ export default class Profiles extends React.PureComponent {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.header}>
-          <Icon name="user" size={32} color="gray" />
-          <Icon name="message-circle" size={32} color="gray" />
+          <Text style={styles.title}>Tummy Tuck</Text>
+          <Text style={styles.cardsLeft}>47 / 50</Text>
         </View>
         <View style={styles.cards}>
           {
@@ -197,7 +197,7 @@ export default class Profiles extends React.PureComponent {
             <Icon name="x" size={32} color="#ec5288" />
           </View>
           <View style={styles.circle}>
-            <Icon name="heart" size={32} color="#6ee3b4" />
+            <Icon name="check" size={32} color="#6ee3b4" />
           </View>
         </View>
       </SafeAreaView>
@@ -214,6 +214,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 16,
+    marginTop: 15,
+    marginBottom: 15
+  },
+  title: {
+    fontSize: 22,
+    color: '#384143',
+    fontWeight: '700'
+  },
+  cardsLeft: {
+    color: '#d18648',
+    fontSize: 22,
+    fontWeight: '700'
   },
   cards: {
     flex: 1,
@@ -224,18 +236,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-evenly",
     padding: 16,
-  },
-  circle: {
-    width: 64,
-    height: 64,
-    borderRadius: 32,
-    padding: 12,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "white",
-    shadowColor: "gray",
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 0.18,
-    shadowRadius: 2,
-  },
+  }
 });
