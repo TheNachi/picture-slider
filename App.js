@@ -32,7 +32,7 @@ const profiles = [
 
 export default class App extends React.Component {
   state = {
-    ready: false,
+    ready: false
   };
 
   async componentDidMount() {

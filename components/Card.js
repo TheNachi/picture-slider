@@ -1,9 +1,13 @@
 import * as React from "react";
 import {
-  Image, StyleSheet, View, Text
+  Image, StyleSheet, View, Text, Dimensions
 } from "react-native";
 import Animated from "react-native-reanimated";
 import { Feather as Icon } from "@expo/vector-icons";
+import Compare, { Before, After, DefaultDragger, Dragger } from './Comparison';
+
+const deviceWidth = Dimensions.get('window').width;
+const deviceHeight = Dimensions.get('window').height;
 
 export default class Card extends React.PureComponent {
   static defaultProps = {
@@ -11,14 +15,61 @@ export default class Card extends React.PureComponent {
     nopeOpacity: 0,
   };
 
+  state = {
+    scrollEnabled: true
+  }
+
+  onMoveStart() {
+    this.setState({ scrollEnabled: false });
+  }
+
+  onMoveEnd() {
+    this.setState({ scrollEnabled: true });
+  }
+
   render() {
     const { profile, likeOpacity, nopeOpacity } = this.props;
     return (
-      <View style={{...StyleSheet.absoluteFill, flexDirection: 'column'}}>
-        <Image style={styles.image} source={profile.profile} />
-        {/* <View style={styles.knob}>
-          <Text>AA</Text>
-        </View> */}
+      <View style={{...StyleSheet.absoluteFill}}>
+        {/* <Image style={styles.image} source={profile.profile} /> */}
+        <Compare
+          initial={deviceWidth / 2}
+          draggerWidth={50}
+          height={deviceHeight - 250}
+        >
+          <Before>
+            <Image style={styles.image} source={require('../assets/profiles/1.jpg')} />
+          </Before>
+          <After>
+            <Image style={styles.image} source={require('../assets/profiles/2.jpg')} />
+          </After>
+          <Dragger>
+            <View
+              style={{
+                position: 'absolute',
+                top: 0,
+                right: 24,
+                bottom: 0,
+                left: 24,
+                backgroundColor: '#fff',
+                opacity: 0.6
+              }}
+            />
+            <View
+              style={{
+                position: 'absolute',
+                top: (deviceHeight - 90) / 2,
+                left: 10,
+                backgroundColor: '#fff',
+                opacity: 0.9,
+                width: 30,
+                height: 30,
+                marginTop: -15,
+                transform: [{ rotate: '45deg' }]
+              }}
+            />
+          </Dragger>
+        </Compare>
         <View style={styles.overlay}>
           <View style={styles.header}>
             <Animated.View style={{...styles.circle, opacity: likeOpacity }}>
@@ -46,24 +97,6 @@ const styles = StyleSheet.create({
   },
   divider: {
     backgroundColor: '#ffffff'
-  },
-  knob: {
-    height: 50,
-    width: 50,
-    backgroundColor: '#ffffff',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 50,
-    position: 'absolute',
-    marginLeft: 40,
-    justifyContent: 'center',
-    // top: '50%',
-    // transform: [{translateY: 50}],
-    zIndex: 2000
-  },
-  dividerKnob: {
-    height: 50,
-    width: 50
   },
   overlay: {
     flex: 1,
@@ -115,6 +148,6 @@ const styles = StyleSheet.create({
     shadowColor: "gray",
     shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 0.18,
-    shadowRadius: 2,
+    shadowRadius: 2
   },
 });

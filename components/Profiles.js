@@ -167,7 +167,7 @@ export default class Profiles extends React.PureComponent {
       zIndex: 900,
       transform: [
         { translateX },
-        { translateY },
+        // { translateY },
         { rotateZ },
       ],
     };
