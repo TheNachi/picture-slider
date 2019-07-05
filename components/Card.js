@@ -32,6 +32,14 @@ export default class Card extends React.PureComponent {
     return (
       <View style={{...StyleSheet.absoluteFill}}>
         {/* <Image style={styles.image} source={profile.profile} /> */}
+        <View style={styles.header}>
+          <Animated.View style={{...styles.circle, opacity: likeOpacity }}>
+            <Icon name="x" size={32} color="#ec5288" />
+          </Animated.View>
+          <Animated.View style={{...styles.circle, opacity: nopeOpacity }}>
+            <Icon name="check" size={32} color="#6ee3b4" />
+          </Animated.View>
+        </View>
         <Compare
           initial={deviceWidth / 2}
           draggerWidth={50}
@@ -71,17 +79,9 @@ export default class Card extends React.PureComponent {
           </Dragger>
         </Compare>
         <View style={styles.overlay}>
-          <View style={styles.header}>
-            <Animated.View style={{...styles.circle, opacity: likeOpacity }}>
-              <Icon name="x" size={32} color="#ec5288" />
-            </Animated.View>
-            <Animated.View style={{...styles.circle, opacity: nopeOpacity }}>
-              <Icon name="check" size={32} color="#6ee3b4" />
-            </Animated.View>
-          </View>
-          <View style={styles.footer}>
+        {/* <View style={styles.footer}>
             <Text style={styles.name}>{profile.name}</Text>
-          </View>
+            </View> */}
         </View>
       </View>
     );
@@ -106,6 +106,10 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
+    position: "absolute",
+    zIndex: 5,
+    width: Dimensions.get('window').width,
+    padding: 20
   },
   footer: {
     flexDirection: "row",

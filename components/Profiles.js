@@ -1,6 +1,6 @@
 import * as React from "react";
 import {
-  SafeAreaView, StyleSheet, View, Dimensions, Text
+  SafeAreaView, StyleSheet, View, Dimensions, Text, TouchableOpacity
 } from "react-native";
 import { Feather as Icon } from "@expo/vector-icons";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
@@ -167,7 +167,7 @@ export default class Profiles extends React.PureComponent {
       zIndex: 900,
       transform: [
         { translateX },
-        // { translateY },
+        { translateY },
         { rotateZ },
       ],
     };
@@ -193,12 +193,12 @@ export default class Profiles extends React.PureComponent {
           </PanGestureHandler>
         </View>
         <View style={styles.footer}>
-          <View style={styles.circle}>
+          <TouchableOpacity onPress={() => this.translationX } style={styles.circle}>
             <Icon name="x" size={32} color="#ec5288" />
-          </View>
-          <View style={styles.circle}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.circle}>
             <Icon name="check" size={32} color="#6ee3b4" />
-          </View>
+          </TouchableOpacity>
         </View>
       </SafeAreaView>
     );
