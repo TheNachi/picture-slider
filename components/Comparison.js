@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, PanResponder, Dimensions } from 'react-native';
 
 const deviceWidth = Dimensions.get('window').width;
-const deviceHeight = Dimensions.get('window').height;
 
 const Before = props => (
   <View style={{ flex: 1 }}>
@@ -56,7 +55,7 @@ const Dragger = props => (
       width: props.state.draggerWidth,
       position: 'absolute',
       top: 0,
-      zIndex: 10,
+      zIndex: 1000,
       marginLeft: -props.state.draggerWidth / 2,
       left: props.state.left
     }}
